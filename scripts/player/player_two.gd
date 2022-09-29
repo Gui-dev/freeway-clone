@@ -2,7 +2,7 @@ extends Area2D
 class_name PlayerTwo
 
 
-signal points_two
+signal point_player_two
 var screen_size: Vector2
 onready var sfx_collision: AudioStreamPlayer2D = $sfx_collision
 onready var texture: AnimatedSprite = $texture
@@ -38,7 +38,7 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node) -> void:
   if body.name == 'Won':
-    emit_signal('points_two')
+    emit_signal('point_player_two')
   elif body.is_in_group('cars'):
     sfx_collision.play()
     
