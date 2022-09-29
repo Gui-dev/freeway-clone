@@ -4,7 +4,7 @@ class_name PlayerTwo
 
 signal points_two
 var screen_size: Vector2
-onready var sfx_collision: AudioStreamPlayer2D = $sound_collision_fx
+onready var sfx_collision: AudioStreamPlayer2D = $sfx_collision
 onready var texture: AnimatedSprite = $texture
 export(int) var speed
 
@@ -16,9 +16,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
   var velocity: Vector2 = Vector2()
   
-  if Input.is_action_pressed('down'):
+  if Input.is_action_pressed('ui_down'):
     velocity.y += 1
-  elif Input.is_action_pressed('up'):
+  elif Input.is_action_pressed('ui_up'):
     velocity.y -= 1
   
   if velocity.length() > 0:
