@@ -15,10 +15,14 @@ onready var winning_player: Label = $winning_player
 onready var points: AudioStreamPlayer2D = $points
 onready var win: AudioStreamPlayer2D = $win
 onready var background_sfx: AudioStreamPlayer2D = $background_sfx
+onready var start: Button = $start
+onready var player_one: Area2D = $players/PlayerOne
+onready var player_two: Area2D = $players/PlayerTwo
 
 
 func _ready() -> void:
   randomize()
+  start.visible = false
 
 
 func _on_fast_car_timer_timeout() -> void:
@@ -48,16 +52,32 @@ func _on_point_player_one() -> void:
     win.play()
     fast_car_timer.stop()
     slow_car_timer.stop()
+    start.visible = true
     
 
 func _on_point_player_two() -> void:
-  if score_player_two < 2:
+  if score_player_two < 10:
     score_player_two += 1
     points.play()
     label_score_player_two.text = str(score_player_two)
-  if score_player_two >= 2:
+  if score_player_two >= 10:
     background_sfx.stop()
     winning_player.text = 'Player 2 WIN'
     win.play()
     fast_car_timer.stop()
     slow_car_timer.stop()
+    start.visible = true
+
+
+func _on_start_pressed() -> void:
+  start.visible = false
+  score_player_one = 0
+  score_player_two = 0
+  label_score_player_one.text = str(0)
+  label_score_player_two.text = str(0)
+  winning_player.text = ''
+  fast_car_timer.start()
+  slow_car_timer.start()
+  player_one.restart()
+  player_two.restart()
+  background_sfx.play()
