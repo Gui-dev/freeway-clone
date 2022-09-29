@@ -34,6 +34,10 @@ func _process(delta: float) -> void:
     texture.animation = 'down'
   elif velocity.y < 0:
     texture.animation = 'up'
+
+
+func restart() -> void:
+  position = Vector2(450, 696)
   
 
 func _on_body_entered(body: Node) -> void:
@@ -42,4 +46,4 @@ func _on_body_entered(body: Node) -> void:
   elif body.is_in_group('cars'):
     sfx_collision.play()
     
-  position = Vector2(320, 696)
+  position = Vector2(450, 696)
